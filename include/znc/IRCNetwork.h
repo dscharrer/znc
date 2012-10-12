@@ -105,6 +105,7 @@ class CIRCNetwork : private CCoreTranslationMixin {
     const CString& GetChanPrefixes() const { return m_sChanPrefixes; }
     void SetChanPrefixes(const CString& s) { m_sChanPrefixes = s; }
     bool IsChan(const CString& sChan) const;
+    void SortChans();
 
     const std::vector<CServer*>& GetServers() const;
     bool HasServers() const { return !m_vServers.empty(); }
@@ -277,6 +278,7 @@ class CIRCNetwork : private CCoreTranslationMixin {
     bool JoinChan(CChan* pChan);
     bool LoadModule(const CString& sModName, const CString& sArgs,
                     const CString& sNotice, CString& sError);
+    static bool CompareChanPtrsLesserThan(CChan* a, CChan* b);
 
   protected:
     CString m_sName;
